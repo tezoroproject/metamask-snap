@@ -1,11 +1,4 @@
-# @tezoro/snap
-
-## Snaps is pre-release software
-
-To interact with (your) Snaps, you will need to install [MetaMask Flask](https://metamask.io/flask/),
-a canary distribution for developers that provides access to upcoming features.
-
-## Contributing
+# @tezoroproject/snap
 
 ### Testing and Linting
 
