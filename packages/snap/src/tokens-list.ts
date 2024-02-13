@@ -127,6 +127,78 @@ export const ethereumTokens = [
     label: 'DEC',
     address: '0x30f271c9e86d2b7d00a6376cd96a1cfbd5f0b9b3',
   },
+  {
+    label: 'BEAM',
+    address: '0x62D0A8458eD7719FDAF978fe5929C6D342B0bFcE',
+  },
+  {
+    label: 'FLOW',
+    address: '0x5c147e74D63B1D31AA3Fd78Eb229B65161983B2b',
+  },
+  {
+    label: 'SNX',
+    address: '0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f',
+  },
+  {
+    label: 'SAND',
+    address: '0x3845badAde8e6dFF049820680d1F14bD3903a5d0',
+  },
+  {
+    label: 'AXS',
+    address: '0xbb0e17ef65f82ab018d8edd776e8dd940327b28b',
+  },
+  {
+    label: 'KCS',
+    address: '0xf34960d9d60be18cc1d5afc1a6f012a723a28811',
+  },
+  {
+    label: 'BGB',
+    address: '0x19de6b897ed14a376dda0fe53a5420d2ac828a28',
+  },
+  {
+    label: 'ETHDYDX',
+    address: '0x92d6c1e31e14520e676a687f0a93788b716beff5',
+  },
+  {
+    label: 'BTT',
+    address: '0xc669928185dbce49d2230cc9b0979be6dc797957',
+  },
+  {
+    label: 'MANA',
+    address: '0x0f5d2fb29fb7d3cfee444a200298f468908cc942',
+  },
+  {
+    label: 'CHZ',
+    address: '0x3506424f91fd33084466f402d5d97f05f8e3b4af',
+  },
+  {
+    label: 'BLUR',
+    address: '0x5283d291dbcf85356a21ba090e6db59121208b44',
+  },
+  {
+    label: 'ROSE',
+    address: '0x26B80FBfC01b71495f477d5237071242e0d959d7',
+  },
+  {
+    label: 'OSMO',
+    address: '0x93A62Ccfcf1EfCB5f60317981F71ed6Fb39F4BA2',
+  },
+  {
+    label: 'KAVA',
+    address: '0x0C356B7fD36a5357E5A017EF11887ba100C9AB76',
+  },
+  {
+    label: 'PENDLE',
+    address: '0x808507121b80c02388fad14726482e061b8da827',
+  },
+  {
+    label: 'USDD',
+    address: '0x0c10bf8fcb7bf5412187a595ab97a3609160b5c6',
+  },
+  {
+    label: 'WOO',
+    address: '0x4691937a7508860f876c9c0a2a617e7d9e945d4b',
+  },
 ] as const;
 
 export const sepoliaTokens = [
