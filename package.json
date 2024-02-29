@@ -59,6 +59,6 @@
     }
   },
   "dependencies": {
-    "@metamask/providers": "^14.0.2"
+    "@metamask/providers": "^15.0.0"
   }
 }
