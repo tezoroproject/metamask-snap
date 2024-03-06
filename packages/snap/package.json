@@ -1,6 +1,6 @@
 {
   "name": "@tezoroproject/snap",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "On-chain backup & will for your crypto. Tezoro is a non-custodial service that allows you to deploy a smart contract that can recover digital assets even if you have lost access to your wallet or died.",
   "repository": {
     "type": "git",

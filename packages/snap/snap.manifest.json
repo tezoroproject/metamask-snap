@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "On-chain backup & will for your crypto. Tezoro is a non-custodial service that allows you to deploy a smart contract that can recover digital assets even if you have lost access to your wallet or died.",
   "proposedName": "Tezoro",
   "repository": {
@@ -7,7 +7,7 @@
     "url": "https://github.com/tezoroproject/metamask-snap.git"
   },
   "source": {
-    "shasum": "DrFTHC2OYyTrMRgEemqJS8YYMBrW4/WJt94UjuVjZdI=",
+    "shasum": "oJz9OjH6iowPZ4rA67uzokqi3rdTH74/LXfHC1l+QHI=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
