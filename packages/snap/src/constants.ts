@@ -1,3 +1,5 @@
+import { ethereumTokens, sepoliaTokens } from './tokens-list';
+
 type Network = 'mainnet' | 'sepolia';
 
 export const network = 'mainnet' as Network;
@@ -10,3 +12,5 @@ export const API_URL =
 export const THRESHOLD_MIN_USD = 2000;
 
 export const STABLE_COINS = ['USDT', 'USDC', 'DAI', 'USDP', 'TUSD'];
+
+export const tokens = network === 'mainnet' ? ethereumTokens : sepoliaTokens;
