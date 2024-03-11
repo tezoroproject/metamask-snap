@@ -15,3 +15,11 @@ script in the `lavamoat.allowScripts` section of `package.json`.
 
 See the documentation for [@lavamoat/allow-scripts](https://github.com/LavaMoat/LavaMoat/tree/main/packages/allow-scripts)
 for more information.
+
+# Description
+
+This snap checks token balances in available accounts and notifies the user if the amount is not backed up.
+
+# Usage
+
+Install snap on Tezoro website (dashboard), give required permissions.
