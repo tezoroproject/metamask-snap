@@ -18,8 +18,8 @@ for more information.
 
 # Description
 
-This snap checks token balances in available accounts and notifies the user if the amount is not backed up.
+At 00:00 on day-of-month 1 and 15 it checks the balance of the account and sends a notification if the balance is not backed up.
 
 # Usage
 
-Install snap on Tezoro website (dashboard), give required permissions.
+Install snap on [Tezoro](https://tezoro.io) website (dashboard), give required permissions.
