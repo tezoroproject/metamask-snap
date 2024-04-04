@@ -16,9 +16,12 @@ script in the `lavamoat.allowScripts` section of `package.json`.
 See the documentation for [@lavamoat/allow-scripts](https://github.com/LavaMoat/LavaMoat/tree/main/packages/allow-scripts)
 for more information.
 
-# Description
+# Flow
 
-At 00:00 on day-of-month 1 and 15 it checks the balance of the account and sends a notification if the balance is not backed up.
+1. Install tha snap
+2. Give required permissions (account read)
+3. Connect Tezoro account (to check backups)
+4. At 00:00 on day-of-month 1 and 15 it checks the balance of the account and sends a notification if the balance is not backed up.
 
 # Usage
 
