@@ -119,14 +119,12 @@ export const onCronjob: OnCronjobHandler = async ({ request }) => {
           }
         });
         if (tokensList.size > 0) {
-          [...tokensList].map(async (token) => {
-            await snap.request({
-              method: 'snap_notify',
-              params: {
-                type: 'native',
-                message: `Protect ${token} from loss with on-chain backup & will`,
-              },
-            });
+          await snap.request({
+            method: 'snap_notify',
+            params: {
+              type: 'native',
+              message: `Protect your assets with Tezoro On-Chain Will`,
+            },
           });
         }
       }
