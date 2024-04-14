@@ -83,16 +83,30 @@ export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
     }
 
     case 'deleteToken': {
-      await snap.request({
-        method: 'snap_manageState',
-
+      const result = await snap.request({
+        method: 'snap_dialog',
         params: {
-          operation: ManageStateOperation.UpdateState,
-          newState: {},
-          encrypted: true,
+          type: 'confirmation',
+          content: panel([
+            heading('Would you like to disconnect your account?'),
+            text('The action unbinds your Tezoro account from the snap.'),
+          ]),
         },
       });
-      return true;
+
+      if (result === true) {
+        await snap.request({
+          method: 'snap_manageState',
+
+          params: {
+            operation: ManageStateOperation.UpdateState,
+            newState: {},
+            encrypted: true,
+          },
+        });
+        return true;
+      }
+      return false;
     }
 
     default:
