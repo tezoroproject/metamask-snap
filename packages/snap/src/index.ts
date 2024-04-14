@@ -8,7 +8,7 @@ import {
 } from '@metamask/snaps-sdk';
 
 import checkTokens from './check-tokens';
-import { accountsSchema, stateSchema } from './schemas';
+import { accountsSchema } from './schemas';
 import type { OnRpcRequestHandler } from './types';
 
 export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
@@ -59,27 +59,6 @@ export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
         return true;
       }
       return false;
-    }
-
-    case 'getToken': {
-      const state = await snap.request({
-        method: 'snap_manageState',
-        params: {
-          operation: ManageStateOperation.GetState,
-          encrypted: true,
-        },
-      });
-
-      if (state === null) {
-        return null;
-      }
-      const parsedState = stateSchema.safeParse(state);
-      if (!parsedState.success) {
-        throw new Error(
-          `State is invalid: ${parsedState.error.errors.join(', ')}`,
-        );
-      }
-      return parsedState.data.token;
     }
 
     case 'deleteToken': {
