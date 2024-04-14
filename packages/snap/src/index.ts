@@ -107,34 +107,32 @@ export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
 
 export const onCronjob: OnCronjobHandler = async ({ request }) => {
   switch (request.method) {
-    case 'checkTokens': {
-      const { data, error } = await checkTokens();
-      if (data) {
-        const tokensList = new Set<string>();
-        Object.values(data).map(async (balances) => {
-          if (balances) {
-            Object.keys(balances).forEach((token) => {
-              tokensList.add(token);
+    case 'checkTokens':
+      {
+        const { data } = await checkTokens();
+        if (data) {
+          const tokensList = new Set<string>();
+          Object.values(data).map(async (balances) => {
+            if (balances) {
+              Object.keys(balances).forEach((token) => {
+                tokensList.add(token);
+              });
+            }
+          });
+          if (tokensList.size > 0) {
+            [...tokensList].map(async (token) => {
+              await snap.request({
+                method: 'snap_notify',
+                params: {
+                  type: 'native',
+                  message: `Protect ${token} from loss with on-chain backup & will`,
+                },
+              });
             });
           }
-        });
-        if (tokensList.size > 0) {
-          [...tokensList].map(async (token) => {
-            await snap.request({
-              method: 'snap_notify',
-              params: {
-                type: 'native',
-                message: `Protect ${token} from loss with on-chain backup & will`,
-              },
-            });
-          });
         }
       }
-      return {
-        data,
-        error,
-      };
-    }
+      break;
     default:
       throw rpcErrors.methodNotFound({
         data: {
