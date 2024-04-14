@@ -36,4 +36,8 @@ export const stateSchema = z.object({
   token: z.string().optional(),
 });
 
+export const assetUSDPriceSchema = z.object({
+  price: z.number(),
+});
+
 export const accountsSchema = z.array(z.string());
