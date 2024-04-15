@@ -33,7 +33,7 @@ export const backupSchema = z.object({
 });
 
 export const stateSchema = z.object({
-  token: z.string().optional(),
+  token: z.string(),
 });
 
 export const accountsSchema = z.array(z.string());
