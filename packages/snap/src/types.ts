@@ -15,10 +15,6 @@ type DeleteToken = {
   method: 'deleteToken';
 };
 
-type GetToken = {
-  method: 'getToken';
-};
-
 type CheckTokens = {
   method: 'checkTokens';
 };
@@ -33,11 +29,11 @@ type GetAccounts = {
 type RequestType =
   | SaveToken
   | DeleteToken
-  | GetToken
   | CheckTokens
   | RequestAccounts
   | GetAccounts;
 
 export type OnRpcRequestHandler = (args: {
   request: RequestType;
+  origin: string;
 }) => Promise<unknown>;

@@ -62,38 +62,31 @@ export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
       return false;
     }
 
-    case 'getToken': {
-      const state = await snap.request({
-        method: 'snap_manageState',
-        params: {
-          operation: ManageStateOperation.GetState,
-          encrypted: true,
-        },
-      });
-
-      if (state === null) {
-        return null;
-      }
-      const parsedState = stateSchema.safeParse(state);
-      if (!parsedState.success) {
-        throw new Error(
-          `State is invalid: ${parsedState.error.errors.join(', ')}`,
-        );
-      }
-      return parsedState.data.token;
-    }
-
     case 'deleteToken': {
-      await snap.request({
-        method: 'snap_manageState',
-
+      const result = await snap.request({
+        method: 'snap_dialog',
         params: {
-          operation: ManageStateOperation.UpdateState,
-          newState: {},
-          encrypted: true,
+          type: 'confirmation',
+          content: panel([
+            heading('Would you like to disconnect your account?'),
+            text('The action unbinds your Tezoro account from the snap.'),
+          ]),
         },
       });
-      return true;
+
+      if (result === true) {
+        await snap.request({
+          method: 'snap_manageState',
+
+          params: {
+            operation: ManageStateOperation.UpdateState,
+            newState: {},
+            encrypted: true,
+          },
+        });
+        return true;
+      }
+      return false;
     }
 
     default:
@@ -120,14 +113,12 @@ export const onCronjob: OnCronjobHandler = async ({ request }) => {
           }
         });
         if (tokensList.size > 0) {
-          [...tokensList].map(async (token) => {
-            await snap.request({
-              method: 'snap_notify',
-              params: {
-                type: 'native',
-                message: `Protect ${token} from loss with on-chain backup & will`,
-              },
-            });
+          await snap.request({
+            method: 'snap_notify',
+            params: {
+              type: 'native',
+              message: `Protect your assets with Tezoro On-Chain Will`,
+            },
           });
         }
       }

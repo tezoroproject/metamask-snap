@@ -7,7 +7,7 @@
     "url": "https://github.com/tezoroproject/metamask-snap.git"
   },
   "source": {
-    "shasum": "pni7joHxHS51elKKJ0jmtswS2TiYJO6NaFhudWknhV8=",
+    "shasum": "Lu/wUTFmjJaoWS+XFQkVrDQ9HG5xQF5+KajUg/X2fmU=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
@@ -24,8 +24,10 @@
     "endowment:network-access": {},
     "endowment:ethereum-provider": {},
     "endowment:rpc": {
-      "dapps": true,
-      "snaps": false
+      "allowedOrigins": [
+        "tezoro.io",
+        "npm:@tezoroproject/snap"
+      ]
     },
     "endowment:cronjob": {
       "jobs": [
