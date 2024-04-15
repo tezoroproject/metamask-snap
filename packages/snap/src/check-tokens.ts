@@ -2,10 +2,10 @@ import { ManageStateOperation } from '@metamask/snaps-sdk';
 
 import { THRESHOLD_MIN_USD } from './constants';
 import getActiveBackups from './get-active-backups';
+import getPriceOfAssetQuotedInUSD from './get-price-of-asset-quoted-in-usd';
 import getTokenBalances from './get-token-balances';
 import { accountsSchema, stateSchema } from './schemas';
 import assertIsWithMessage from './utils/assert-is-with-message';
-import getPriceOfAssetQuotedInUSD from './get-price-of-asset-quoted-in-usd';
 
 async function getAccounts() {
   const rawAccounts = await ethereum.request({ method: 'eth_accounts' });
@@ -59,7 +59,6 @@ export default async function checkTokens() {
       } of tokenBalances.values()) {
         const balanceInDecimal = parseFloat(balance.toString()) / 10 ** decimal;
         const priceOfAssetQuotedInUSD = await getPriceOfAssetQuotedInUSD(
-          token,
           address,
         );
         if (balanceInDecimal > 0) {
