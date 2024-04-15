@@ -1,8 +1,8 @@
 import { ManageStateOperation } from '@metamask/snaps-sdk';
 
 import { THRESHOLD_MIN_USD } from './constants';
-import getPriceOfAssetQuotedInUSD from './external/get-price-of-asset-quoted-in-usd';
 import getActiveBackups from './get-active-backups';
+import getPriceOfAssetQuotedInUSD from './get-price-of-asset-quoted-in-usd';
 import getTokenBalances from './get-token-balances';
 import { accountsSchema, stateSchema } from './schemas';
 import assertIsWithMessage from './utils/assert-is-with-message';
@@ -58,8 +58,10 @@ export default async function checkTokens() {
         address,
       } of tokenBalances.values()) {
         const balanceInDecimal = parseFloat(balance.toString()) / 10 ** decimal;
-        const priceOfAssetQuotedInUSD = await getPriceOfAssetQuotedInUSD(label);
         if (balanceInDecimal > 0) {
+          const priceOfAssetQuotedInUSD = await getPriceOfAssetQuotedInUSD(
+            address,
+          );
           // No need to check zero balances.
           const balanceInUSD = balanceInDecimal * priceOfAssetQuotedInUSD;
           const totalTokenBackupsAmount = activeBackups

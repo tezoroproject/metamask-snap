@@ -44,4 +44,8 @@ export const authDataSchema = z.object({
   token: jwtSchema,
 });
 
+export const assetUSDPriceSchema = z.object({
+  price: z.number(),
+});
+
 export const accountsSchema = z.array(z.string());
