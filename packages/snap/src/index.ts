@@ -8,7 +8,7 @@ import {
 } from '@metamask/snaps-sdk';
 
 import checkTokens from './check-tokens';
-import { accountsSchema, authDataSchema, stateSchema } from './schemas';
+import { accountsSchema, authDataSchema } from './schemas';
 import type { OnRpcRequestHandler } from './types';
 
 export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
@@ -101,32 +101,30 @@ export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
 
 export const onCronjob: OnCronjobHandler = async ({ request }) => {
   switch (request.method) {
-    case 'checkTokens': {
-      const { data, error } = await checkTokens();
-      if (data) {
-        const tokensList = new Set<string>();
-        Object.values(data).map(async (balances) => {
-          if (balances) {
-            Object.keys(balances).forEach((token) => {
-              tokensList.add(token);
+    case 'checkTokens':
+      {
+        const { data } = await checkTokens();
+        if (data) {
+          const tokensList = new Set<string>();
+          Object.values(data).map(async (balances) => {
+            if (balances) {
+              Object.keys(balances).forEach((token) => {
+                tokensList.add(token);
+              });
+            }
+          });
+          if (tokensList.size > 0) {
+            await snap.request({
+              method: 'snap_notify',
+              params: {
+                type: 'native',
+                message: `Protect your assets with Tezoro On-Chain Will`,
+              },
             });
           }
-        });
-        if (tokensList.size > 0) {
-          await snap.request({
-            method: 'snap_notify',
-            params: {
-              type: 'native',
-              message: `Protect your assets with Tezoro On-Chain Will`,
-            },
-          });
         }
       }
-      return {
-        data,
-        error,
-      };
-    }
+      break;
     default:
       throw rpcErrors.methodNotFound({
         data: {
