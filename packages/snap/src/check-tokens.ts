@@ -58,10 +58,10 @@ export default async function checkTokens() {
         address,
       } of tokenBalances.values()) {
         const balanceInDecimal = parseFloat(balance.toString()) / 10 ** decimal;
-        const priceOfAssetQuotedInUSD = await getPriceOfAssetQuotedInUSD(
-          address,
-        );
         if (balanceInDecimal > 0) {
+          const priceOfAssetQuotedInUSD = await getPriceOfAssetQuotedInUSD(
+            address,
+          );
           // No need to check zero balances.
           const balanceInUSD = balanceInDecimal * priceOfAssetQuotedInUSD;
           const totalTokenBackupsAmount = activeBackups
