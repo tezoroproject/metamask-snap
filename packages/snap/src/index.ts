@@ -8,7 +8,7 @@ import {
 } from '@metamask/snaps-sdk';
 
 import checkTokens from './check-tokens';
-import { accountsSchema } from './schemas';
+import { accountsSchema, authDataSchema, stateSchema } from './schemas';
 import type { OnRpcRequestHandler } from './types';
 
 export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
@@ -44,6 +44,7 @@ export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
       });
       if (result === true) {
         const { params } = request;
+        const { token } = authDataSchema.parse(params);
 
         await snap.request({
           method: 'snap_manageState',
@@ -51,7 +52,7 @@ export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
           params: {
             operation: ManageStateOperation.UpdateState,
             newState: {
-              token: params.token,
+              token,
             },
             encrypted: true,
           },
