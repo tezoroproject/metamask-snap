@@ -33,7 +33,15 @@ export const backupSchema = z.object({
 });
 
 export const stateSchema = z.object({
-  token: z.string().optional(),
+  token: z.string(),
+});
+
+const jwtSchema = z
+  .string()
+  .max(8192, 'JWT must be at most 8192 bytes in length.');
+
+export const authDataSchema = z.object({
+  token: jwtSchema,
 });
 
 export const assetUSDPriceSchema = z.object({

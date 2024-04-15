@@ -38,12 +38,6 @@ export default async function checkTokens() {
     };
   }
   const { token } = parsedState.data;
-  if (!token) {
-    return {
-      isStatePresent: true,
-      isTokenPresent: true,
-    };
-  }
   try {
     const activeBackups = await getActiveBackups(token);
     const accounts = await getAccounts();

@@ -24,8 +24,10 @@
     "endowment:network-access": {},
     "endowment:ethereum-provider": {},
     "endowment:rpc": {
-      "dapps": true,
-      "snaps": false
+      "allowedOrigins": [
+        "tezoro.io",
+        "npm:@tezoroproject/snap"
+      ]
     },
     "endowment:cronjob": {
       "jobs": [
