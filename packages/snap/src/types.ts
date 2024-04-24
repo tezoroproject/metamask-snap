@@ -26,12 +26,17 @@ type GetAccounts = {
   method: 'getAccounts';
 };
 
+type CheckIsTokenPresents = {
+  method: 'checkIsTokenPresents';
+};
+
 type RequestType =
   | SaveToken
   | DeleteToken
   | CheckTokens
   | RequestAccounts
-  | GetAccounts;
+  | GetAccounts
+  | CheckIsTokenPresents;
 
 export type OnRpcRequestHandler = (args: {
   request: RequestType;

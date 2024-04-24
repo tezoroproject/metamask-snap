@@ -8,7 +8,7 @@ import {
 } from '@metamask/snaps-sdk';
 
 import checkTokens from './check-tokens';
-import { accountsSchema, authDataSchema } from './schemas';
+import { accountsSchema, authDataSchema, stateSchema } from './schemas';
 import type { OnRpcRequestHandler } from './types';
 
 export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
@@ -26,6 +26,21 @@ export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
         params: [],
       });
       return accountsSchema.parse(data);
+    }
+    case 'checkIsTokenPresents': {
+      const state = await snap.request({
+        method: 'snap_manageState',
+        params: {
+          operation: ManageStateOperation.GetState,
+          encrypted: true,
+        },
+      });
+
+      if (state === null) {
+        return false;
+      }
+      const parsedState = stateSchema.safeParse(state);
+      return parsedState.success;
     }
     case 'checkTokens': {
       const data = await checkTokens();
